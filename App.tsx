@@ -272,7 +272,7 @@ MAPS MODE: You specialize in providing neighborhood awareness. Identify the curr
 SAFETY: Always highlight immediate physical hazards first.
 STYLE: Clear, descriptive, and reassuring. Use relative directions.`;
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({   apiKey: import.meta.env.VITE_API_KEY as string, });
       const micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const AudioCtx = (window.AudioContext || (window as any).webkitAudioContext);
       audioContextInRef.current = new AudioCtx({ sampleRate: 16000 });
@@ -371,7 +371,7 @@ STYLE: Clear, descriptive, and reassuring. Use relative directions.`;
     navigator.geolocation.getCurrentPosition(async (pos) => {
       const { latitude, longitude } = pos.coords;
       try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const ai = new GoogleGenAI({   apiKey: import.meta.env.VITE_API_KEY as string, });
         const response = await ai.models.generateContent({
           model: 'gemini-3-flash-preview',
           contents: "I am a blind person exploring my surroundings. Using my exact location coordinates, please describe the street I'm on, the neighborhood character, and the 5 most important landmarks or businesses within walking distance. Be professional and descriptive.",
@@ -417,7 +417,7 @@ STYLE: Clear, descriptive, and reassuring. Use relative directions.`;
              ctx.drawImage(videoRef.current, 0, 0, 1024, 768);
              const base64 = canvasRef.current.toDataURL('image/jpeg', 0.9).split(',')[1];
              try {
-                const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+                const ai = new GoogleGenAI({   apiKey: import.meta.env.VITE_API_KEY as string, });
                 const response = await ai.models.generateContent({
                   model: 'gemini-3-flash-preview',
                   contents: [{
